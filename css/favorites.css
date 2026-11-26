@@ -1,0 +1,239 @@
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #7f8660;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgba(74, 82, 51, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+nav li a {
+  display: block;
+  padding: 14px 22px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+nav li a:hover {
+  background-color: #6b7547;
+}
+
+/* Hobbies Showcase Container */
+.hobbies-showcase {
+  width: 92%;
+  max-width: 1300px;
+  margin: auto;
+  padding: clamp(32px, 5vw, 56px) 0 75px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 40px);
+}
+
+/* Section Header */
+.hobbies-header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.hobbies-header h1 {
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 12px;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+
+.hobbies-header p {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: #eef1e8;
+  max-width: 60ch;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.hobbies-header p::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #dce2c8;
+  border-radius: 2px;
+  margin: 18px auto 0 auto;
+}
+
+
+.hobby-row {
+  display: flex;
+  align-items: stretch;
+  background-color: #464e34;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+  min-height: 320px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.hobby-row:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Flips image and text sides on even rows */
+.hobby-row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Left/Right Media Area for Two Side-by-Side Photos */
+.hobby-media-pair,
+.hobby-media-single {
+  flex: 1.1;
+  display: flex;
+  gap: 6px;
+  background-color: #363d28;
+  overflow: hidden;
+}
+
+.hobby-media-pair img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.hobby-media-single img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.hobby-row:hover .hobby-media-pair img,
+.hobby-row:hover .hobby-media-single img {
+  transform: scale(1.03);
+}
+
+/* Story / Description Side */
+.hobby-info {
+  flex: 1;
+  padding: clamp(28px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  color: #ffffff;
+}
+
+.hobby-tag {
+  display: inline-block;
+  align-self: flex-start;
+  background-color: #363d28;
+  color: #dce2c8;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 16px;
+}
+
+.hobby-info h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+
+.hobby-info h2::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background-color: #9ba576;
+  border-radius: 2px;
+  margin-top: 12px;
+  transition: width 0.35s ease;
+}
+
+.hobby-row:hover .hobby-info h2::after {
+  width: 68px;
+}
+
+.hobby-info p {
+  font-size: clamp(1rem, 1.15vw, 1.08rem);
+  line-height: 1.75;
+  color: #eef1e8;
+  margin: 4px 0 0;
+}
+
+/* Responsive stacking on smaller screens */
+@media (max-width: 900px) {
+  .hobby-row,
+  .hobby-row.reverse {
+    flex-direction: column;
+  }
+
+  .hobby-media-pair,
+  .hobby-media-single {
+    height: 270px;
+    flex: none;
+  }
+
+  .hobby-info {
+    padding: 30px 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav li a {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .hobby-media-pair,
+  .hobby-media-single {
+    height: 220px;
+  }
+
+  .hobby-info {
+    padding: 24px 20px;
+  }
+}
